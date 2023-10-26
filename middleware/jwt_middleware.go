@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
-	"github.com/labstack/echo/v4"
+	// "github.com/labstack/echo/v4"
 )
 
 func CreateToken(userId int, name string) (string, error) {
@@ -18,12 +18,12 @@ func CreateToken(userId int, name string) (string, error) {
 	return token.SignedString([]byte(constants.SECRET_KEY_JWT))
 }
 
-func ExtractTokenUserId(e echo.Context) int {
-	user := e.Get("user").(*jwt.Token)
-	if user.Valid {
-		claims := user.Claims.(jwt.MapClaims)
-		userId := claims["userId"].(float64)
-		return int(userId)
-	}
-	return 0
-}
+// func ExtractTokenUserId(e echo.Context) int {
+// 	user := e.Get("user").(*jwt.Token)
+// 	if user.Valid {
+// 		claims := user.Claims.(jwt.MapClaims)
+// 		userId := claims["userId"].(float64)
+// 		return int(userId)
+// 	}
+// 	return 0
+// }
