@@ -12,9 +12,11 @@ type Config struct {
 
 type User struct {
 	gorm.Model
-	Name     string `json:"name" form:"name"`
-	Email    string `json:"email" form:"email"`
-	Password string `json:"password" form:"password"`
+	Name     	string `json:"name" form:"name"`
+	Email    	string `json:"email" form:"email"`
+	Password 	string `json:"password" form:"password"`
+	Playlists 	[]Playlist // relasi dengan playlist
+	Tracks 		[]Track // realasi dengan track
 }
 
 type UserResponse struct {
