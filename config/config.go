@@ -34,5 +34,8 @@ func InitDB(){
 
 func InitMigrate(){
 	DB.AutoMigrate(&model.User{})
+	DB.AutoMigrate(&model.Track{})
+	DB.AutoMigrate(&model.Playlist{})
+	DB.AutoMigrate(&model.Playlist_track{})
 	// DB.AutoMigrate(&model.Admin{})
 }
