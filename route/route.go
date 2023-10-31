@@ -30,13 +30,15 @@ func NewRoute() *echo.Echo{
 	eJwt.PUT("/users/:id", controller.UpdateUserByIdController)
 
 	// playlist
-
 	playlist := e.Group("/playlists", m.JwtMiddleware())
-
 	playlist.POST("", controller.CreatePlaylistController)
 	playlist.GET("", controller.GetAllPlaylistController)
 	playlist.PUT("/:id", controller.UpdatePlaylistController)
 	playlist.DELETE("/:id", controller.DeletePlaylistController)
+
+	// track
+	track := e.Group("/tracks", m.JwtMiddleware())
+	track.POST("", controller.CreateTrackController)
 
 	// middleware log
 	m.LogMiddleware(e)
