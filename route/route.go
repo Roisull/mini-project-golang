@@ -29,6 +29,13 @@ func NewRoute() *echo.Echo{
 	eJwt.DELETE("/users/:id", controller.DeleteUserByIdController)
 	eJwt.PUT("/users/:id", controller.UpdateUserByIdController)
 
+	// playlist
+
+	playlist := e.Group("/playlists", m.JwtMiddleware())
+
+	playlist.POST("", controller.CreatePlaylistController)
+	playlist.GET("", controller.GetAllPlaylistController)
+
 	m.LogMiddleware(e)
 
 	return e
