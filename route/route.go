@@ -35,6 +35,7 @@ func NewRoute() *echo.Echo{
 
 	playlist.POST("", controller.CreatePlaylistController)
 	playlist.GET("", controller.GetAllPlaylistController)
+	playlist.PUT("/:id", controller.UpdatePlaylistController)
 
 	m.LogMiddleware(e)
 

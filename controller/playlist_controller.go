@@ -1,8 +1,8 @@
 package controller
 
 import (
-	"mini-project-golang/config"
 	"log"
+	"mini-project-golang/config"
 	"mini-project-golang/controller/request"
 	"mini-project-golang/helper"
 	"mini-project-golang/middleware"
@@ -63,6 +63,38 @@ func GetAllPlaylistController(c echo.Context) error {
 	})
 }
 
+func UpdatePlaylistController(c echo.Context) error{
+	// Mendapatkan ID playlist dari URL
+	id := c.Param("id")
+
+	// Mengecek apakah playlist dengan ID tersebut ada dalam database
+	var existingPlaylist model.Playlist
+	result := config.DB.First(&existingPlaylist, id)
+	if result.Error != nil {
+		return echo.NewHTTPError(http.StatusNotFound, "Playlist Tidak Ditemukan")
+	}
+
+	// mengambil data update dari request
+	updateData := model.Playlist{}
+	c.Bind(&updateData)
+
+	// Perbarui data playlist
+	existingPlaylist.Name = updateData.Name
+
+	// Simpan perubahan ke database
+	if err := config.DB.Save(&existingPlaylist).Error; err != nil {
+		return echo.NewHTTPError(http.StatusInternalServerError, "Failed to update playlist")
+	}
+
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"message": "Playlist updated successfully",
+		"playlist": existingPlaylist,
+	})
+
+}
+
+
+// engga kepake
 func AddPlaylistController(c echo.Context) error{
 
 	idToken, err := middleware.ExtractTokenUserId(c)
