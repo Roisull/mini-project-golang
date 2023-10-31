@@ -93,6 +93,26 @@ func UpdatePlaylistController(c echo.Context) error{
 
 }
 
+func DeletePlaylistController(c echo.Context) error{
+	// mendapatkan ID playlist dari URL param
+	id := c.Param("id")
+
+	// mengecek apakah id yang di masukkan ada dalam database
+	existingPlaylist := model.Playlist{}
+	result := config.DB.First(&existingPlaylist, id)
+	if result.Error != nil {
+		return echo.NewHTTPError(http.StatusNotFound, "Playlist tidak ditemukan")
+	}
+
+	// hapus playlist dari database
+	config.DB.Delete(&existingPlaylist)
+
+	// kirim response JSON dengan pesan sukses
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"message": "Playlist Delete Successfully",
+	})
+}
+
 
 // engga kepake
 func AddPlaylistController(c echo.Context) error{
