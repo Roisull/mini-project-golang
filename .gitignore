@@ -1,0 +1,30 @@
+# Direktori Build
+/bin
+/pkg
+/test
+
+# File Binary dan Eksekusi
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+.DS_Store
+
+# Direktori yang berisi dependensi eksternal
+/vendor
+/Godeps
+
+# File .env
+.env
+
+# File Konfigurasi
+*.yaml
+*.yml
+*.json
+
+# File Log
+*.log
+
+# Direktori yang Berisi Dokumentasi
+/docs
