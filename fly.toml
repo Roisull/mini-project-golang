@@ -1,0 +1,4 @@
+# fly.toml
+
+# nama aplikasi
+app = "mini-project-golang"
