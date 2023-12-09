@@ -111,6 +111,8 @@ func CreateUserController(c echo.Context) error {
 
 	c.Bind(&user)
 
+	fmt.Printf("Data yang diterima dari Flutter: %+v\n", user)
+
 	// // mengambil kata sandi dari request
 	// password := c.FormValue("password")
 
